@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.co.developer.parqueaderoREST.dao.UsuarioDAO;
+import com.co.developer.parqueaderoREST.dao.IUsuarioDAO;
 import com.co.developer.parqueaderoREST.model.Usuario;
 
 @RestController
@@ -21,7 +21,7 @@ public class UsuarioController {
 	private static final Logger LOGGER = Logger.getLogger(UsuarioController.class);
 	
 	@Autowired
-	private UsuarioDAO usuarioDAO;
+	private IUsuarioDAO usuarioDAO;
 	
 	
 	@RequestMapping(path = "/listadoUsuarios", 
@@ -32,7 +32,7 @@ public class UsuarioController {
 		List<Usuario> listaUsuarios = null;
 
 		try {
-			listaUsuarios = usuarioDAO.findAll();
+			listaUsuarios = usuarioDAO.obtenerListadoUsuarios();
 		} catch (Exception e) {
 			LOGGER.error("Error obteniendo el listado de usuarios. ", e);
 		}

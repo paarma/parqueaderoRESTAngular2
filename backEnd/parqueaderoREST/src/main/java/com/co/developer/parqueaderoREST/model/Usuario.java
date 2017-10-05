@@ -7,39 +7,39 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TBL_USUARIO")
+@Table(name = "tbl_usuario")
 public class Usuario {
-	
+		
 	@Id
 	@GeneratedValue
-	@Column(name = "ID_USUARIO")
+	@Column(name = "id_usuario")
 	private int idUsuario;
 	
-	@Column(name = "TIPO_DOCUMENTO")
+	@Column(name = "tipo_documento")
 	private String tipoDocumento;
 	
-	@Column(name = "NUMERO_DOCUMENTO")
+	@Column(name = "numero_documento")
 	private String numeroDocumento;
 	
-	@Column(name = "PRIMER_NOMBRE")
+	@Column(name = "primer_nombre")
 	private String primerNombre;
 	
-	@Column(name = "SEGUNDO_NOMBRE")
+	@Column(name = "segundo_nombre")
 	private String segundoNombre;
 	
-	@Column(name = "PRIMER_APELLIDO")
+	@Column(name = "primer_apellido")
 	private String primerApellido;
 	
-	@Column(name = "SEGUNDO_APELLIDO")
+	@Column(name = "segundo_apellido")
 	private String segundoApellido;
 	
-	@Column(name = "CORREO_ELECTRONICO")
+	@Column(name = "correo_electronico")
 	private String correoElectronico;
 	
-	@Column(name = "CLAVE_USUARIO")
+	@Column(name = "clave_usuario")
 	private String claveUsuario;
 	
-	@Column(name = "ROL")
+	@Column(name = "rol")
 	private String rol;
 
 	
