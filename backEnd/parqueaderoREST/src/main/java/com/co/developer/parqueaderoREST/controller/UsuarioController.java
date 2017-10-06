@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,16 +29,28 @@ public class UsuarioController {
 			method = RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Usuario>> obtenerListadoUsuarios() {
-
-		List<Usuario> listaUsuarios = null;
-
+		
 		try {
-			listaUsuarios = usuarioDAO.obtenerListadoUsuarios();
+			List<Usuario> listaUsuarios = usuarioDAO.obtenerListadoUsuarios();
+			return new ResponseEntity<List<Usuario>>(listaUsuarios, HttpStatus.OK);
 		} catch (Exception e) {
 			LOGGER.error("Error obteniendo el listado de usuarios. ", e);
+			return new ResponseEntity<List<Usuario>>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-
-		return new ResponseEntity<List<Usuario>>(listaUsuarios, HttpStatus.OK);
+	}
+	
+	@RequestMapping(path = "/{id}",
+			method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Usuario> buscarUsuarioPorId(@PathVariable int id){
+		
+		try {
+			Usuario usuario = usuarioDAO.buscarUsuarioPorId(id);
+			return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
+		} catch (Exception e) {
+			LOGGER.error("Error buscando usuario por id ",e);
+			return new ResponseEntity<Usuario>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 	
 }
