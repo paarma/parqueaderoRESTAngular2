@@ -10,7 +10,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class ParqueaderoRestApplicationTests {
 	
-	@Ignore
 	@Test
 	public void contextLoads() {
 	}

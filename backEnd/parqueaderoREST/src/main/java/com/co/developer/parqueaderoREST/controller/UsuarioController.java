@@ -25,7 +25,7 @@ public class UsuarioController {
 	private IUsuarioDAO usuarioDAO;
 	
 	
-	@RequestMapping(path = "/listadoUsuarios", 
+	@RequestMapping(path = "/listado", 
 			method = RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Usuario>> obtenerListadoUsuarios() {
@@ -39,7 +39,7 @@ public class UsuarioController {
 		}
 	}
 	
-	@RequestMapping(path = "/{id}",
+	@RequestMapping(path = "/buscarPorId/{id}",
 			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Usuario> buscarUsuarioPorId(@PathVariable int id){
