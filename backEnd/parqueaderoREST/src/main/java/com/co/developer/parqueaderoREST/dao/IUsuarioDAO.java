@@ -9,4 +9,6 @@ public interface IUsuarioDAO {
 	List<Usuario> obtenerListadoUsuarios();
 	
 	Usuario buscarUsuarioPorId(int idUsuario);
+	
+	Usuario guardarUsuario(Usuario usuario);
 }

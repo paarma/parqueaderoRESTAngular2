@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,6 +50,20 @@ public class UsuarioController {
 			return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
 		} catch (Exception e) {
 			LOGGER.error("Error buscando usuario por id ",e);
+			return new ResponseEntity<Usuario>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@RequestMapping(path = "/guardar",
+			method = RequestMethod.POST,
+			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Usuario> guardarUsuario(@RequestBody Usuario usuario){
+		try {
+			usuario = usuarioDAO.guardarUsuario(usuario);
+			return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
+		} catch (Exception e) {
+			LOGGER.error("Error guardando el usuario ",e);
 			return new ResponseEntity<Usuario>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}

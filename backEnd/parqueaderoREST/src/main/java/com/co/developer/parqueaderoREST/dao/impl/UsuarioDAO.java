@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
@@ -53,6 +54,19 @@ public class UsuarioDAO implements IUsuarioDAO {
 			LOGGER.error("Error consultado usuario por id ", e);
 		}
 
+		return usuario;
+	}
+
+	@Override
+	@Transactional
+	public Usuario guardarUsuario(Usuario usuario) {
+		try {
+			entityManager.persist(usuario);
+			entityManager.flush();
+		} catch (Exception e) {
+			LOGGER.error("Error guardando el usuario. ",e);
+		}
+		
 		return usuario;
 	}
 
